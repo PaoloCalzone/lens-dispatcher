@@ -1,4 +1,8 @@
-import { useWalletLogin, useWalletLogout } from "@lens-protocol/react";
+import {
+  useWalletLogin,
+  useWalletLogout,
+  useProfile,
+} from "@lens-protocol/react";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
 import { useAccount, useConnect, useDisconnect } from "wagmi";
@@ -46,8 +50,9 @@ export function LoginButton({ handle }: { handle?: string }) {
   return (
     <>
       <WhenLoggedInWithProfile>
-        {() => (
+        {({ profile }) => (
           <button onClick={onLogoutClick} disabled={isLogoutPending}>
+            <p>{profile.handle}</p>
             <strong>Log out</strong>
           </button>
         )}
